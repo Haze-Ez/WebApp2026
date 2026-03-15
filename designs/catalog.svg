@@ -1,0 +1,118 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1440" height="900" fill="#F4F6F7"/>
+
+  <!-- Nav Bar -->
+  <rect width="1440" height="64" fill="#2C3E50"/>
+  <text x="40" y="40" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="white">📚 LibraryApp</text>
+  <text x="560" y="39" font-family="Inter, sans-serif" font-size="14" fill="#BDC3C7">Catalog</text>
+  <text x="640" y="39" font-family="Inter, sans-serif" font-size="14" fill="white" font-weight="600">My Dashboard</text>
+  <rect x="1300" y="16" width="100" height="32" rx="6" fill="#F5A623"/>
+  <text x="1350" y="37" font-family="Inter, sans-serif" font-size="13" fill="white" text-anchor="middle">Logout</text>
+  <circle cx="1274" cy="32" r="16" fill="#3498DB"/>
+  <text x="1274" y="38" font-family="Inter, sans-serif" font-size="13" fill="white" text-anchor="middle">JD</text>
+
+  <!-- Search + Filter -->
+  <rect x="40" y="84" width="800" height="44" rx="8" fill="white" stroke="#D5D8DC" stroke-width="1.5"/>
+  <text x="64" y="112" font-family="Inter, sans-serif" font-size="14" fill="#BDC3C7">🔍  Search by title or author...</text>
+  <rect x="860" y="84" width="160" height="44" rx="8" fill="white" stroke="#D5D8DC" stroke-width="1.5"/>
+  <text x="940" y="112" font-family="Inter, sans-serif" font-size="13" fill="#7F8C8D" text-anchor="middle">Genre ▾</text>
+
+  <!-- Book Card 1 - Available -->
+  <rect x="40" y="152" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="40" y="152" width="210" height="160" rx="10" fill="#3498DB"/>
+  <rect x="40" y="252" width="210" height="60" fill="#3498DB"/>
+  <text x="145" y="242" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📖</text>
+  <text x="145" y="336" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">The Great Gatsby</text>
+  <text x="145" y="358" font-family="Inter, sans-serif" font-size="12" fill="#7F8C8D" text-anchor="middle">F. Scott Fitzgerald</text>
+  <rect x="60" y="368" width="60" height="20" rx="10" fill="#EAF4FB"/>
+  <text x="90" y="382" font-family="Inter, sans-serif" font-size="10" fill="#3498DB" text-anchor="middle">Fiction</text>
+  <rect x="110" y="368" width="80" height="20" rx="10" fill="#EAFAF1"/>
+  <text x="150" y="382" font-family="Inter, sans-serif" font-size="10" fill="#27AE60" text-anchor="middle">● Available</text>
+  <rect x="55" y="402" width="140" height="36" rx="6" fill="#F5A623"/>
+  <text x="125" y="425" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="white" text-anchor="middle">Borrow</text>
+
+  <!-- Book Card 2 - Unavailable -->
+  <rect x="270" y="152" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="270" y="152" width="210" height="160" rx="10" fill="#8E44AD"/>
+  <rect x="270" y="252" width="210" height="60" fill="#8E44AD"/>
+  <text x="375" y="242" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📗</text>
+  <text x="375" y="336" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">To Kill a Mockingbird</text>
+  <text x="375" y="358" font-family="Inter, sans-serif" font-size="12" fill="#7F8C8D" text-anchor="middle">Harper Lee</text>
+  <rect x="290" y="368" width="60" height="20" rx="10" fill="#EAF4FB"/>
+  <text x="320" y="382" font-family="Inter, sans-serif" font-size="10" fill="#3498DB" text-anchor="middle">Classic</text>
+  <rect x="360" y="368" width="90" height="20" rx="10" fill="#FDEDEC"/>
+  <text x="405" y="382" font-family="Inter, sans-serif" font-size="10" fill="#E74C3C" text-anchor="middle">● Unavailable</text>
+  <rect x="285" y="402" width="140" height="36" rx="6" fill="#D5D8DC"/>
+  <text x="355" y="425" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#95A5A6" text-anchor="middle">Unavailable</text>
+
+  <!-- Book Card 3 - Available -->
+  <rect x="500" y="152" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="500" y="152" width="210" height="160" rx="10" fill="#E74C3C"/>
+  <rect x="500" y="252" width="210" height="60" fill="#E74C3C"/>
+  <text x="605" y="242" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📕</text>
+  <text x="605" y="336" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">1984</text>
+  <text x="605" y="358" font-family="Inter, sans-serif" font-size="12" fill="#7F8C8D" text-anchor="middle">George Orwell</text>
+  <rect x="520" y="368" width="60" height="20" rx="10" fill="#EAF4FB"/>
+  <text x="550" y="382" font-family="Inter, sans-serif" font-size="10" fill="#3498DB" text-anchor="middle">Dystopia</text>
+  <rect x="590" y="368" width="80" height="20" rx="10" fill="#EAFAF1"/>
+  <text x="630" y="382" font-family="Inter, sans-serif" font-size="10" fill="#27AE60" text-anchor="middle">● Available</text>
+  <rect x="515" y="402" width="140" height="36" rx="6" fill="#F5A623"/>
+  <text x="585" y="425" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="white" text-anchor="middle">Borrow</text>
+
+  <!-- Book Card 4 -->
+  <rect x="730" y="152" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="730" y="152" width="210" height="160" rx="10" fill="#27AE60"/>
+  <rect x="730" y="252" width="210" height="60" fill="#27AE60"/>
+  <text x="835" y="242" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📘</text>
+  <text x="835" y="336" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">Brave New World</text>
+  <text x="835" y="358" font-family="Inter, sans-serif" font-size="12" fill="#7F8C8D" text-anchor="middle">Aldous Huxley</text>
+  <rect x="750" y="368" width="60" height="20" rx="10" fill="#EAF4FB"/>
+  <text x="780" y="382" font-family="Inter, sans-serif" font-size="10" fill="#3498DB" text-anchor="middle">Sci-Fi</text>
+  <rect x="820" y="368" width="80" height="20" rx="10" fill="#EAFAF1"/>
+  <text x="860" y="382" font-family="Inter, sans-serif" font-size="10" fill="#27AE60" text-anchor="middle">● Available</text>
+  <rect x="745" y="402" width="140" height="36" rx="6" fill="#F5A623"/>
+  <text x="815" y="425" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="white" text-anchor="middle">Borrow</text>
+
+  <!-- Book Card 5 -->
+  <rect x="960" y="152" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="960" y="152" width="210" height="160" rx="10" fill="#F39C12"/>
+  <rect x="960" y="252" width="210" height="60" fill="#F39C12"/>
+  <text x="1065" y="242" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📙</text>
+  <text x="1065" y="336" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">The Alchemist</text>
+  <text x="1065" y="358" font-family="Inter, sans-serif" font-size="12" fill="#7F8C8D" text-anchor="middle">Paulo Coelho</text>
+  <rect x="980" y="368" width="60" height="20" rx="10" fill="#EAF4FB"/>
+  <text x="1010" y="382" font-family="Inter, sans-serif" font-size="10" fill="#3498DB" text-anchor="middle">Fiction</text>
+  <rect x="1050" y="368" width="90" height="20" rx="10" fill="#FDEDEC"/>
+  <text x="1095" y="382" font-family="Inter, sans-serif" font-size="10" fill="#E74C3C" text-anchor="middle">● Unavailable</text>
+  <rect x="975" y="402" width="140" height="36" rx="6" fill="#D5D8DC"/>
+  <text x="1045" y="425" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#95A5A6" text-anchor="middle">Unavailable</text>
+
+  <!-- Book Card 6 -->
+  <rect x="1190" y="152" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="1190" y="152" width="210" height="160" rx="10" fill="#1ABC9C"/>
+  <rect x="1190" y="252" width="210" height="60" fill="#1ABC9C"/>
+  <text x="1295" y="242" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📚</text>
+  <text x="1295" y="336" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="#2C3E50" text-anchor="middle">Dune</text>
+  <text x="1295" y="358" font-family="Inter, sans-serif" font-size="12" fill="#7F8C8D" text-anchor="middle">Frank Herbert</text>
+  <rect x="1210" y="368" width="60" height="20" rx="10" fill="#EAF4FB"/>
+  <text x="1240" y="382" font-family="Inter, sans-serif" font-size="10" fill="#3498DB" text-anchor="middle">Sci-Fi</text>
+  <rect x="1280" y="368" width="80" height="20" rx="10" fill="#EAFAF1"/>
+  <text x="1320" y="382" font-family="Inter, sans-serif" font-size="10" fill="#27AE60" text-anchor="middle">● Available</text>
+  <rect x="1205" y="402" width="140" height="36" rx="6" fill="#F5A623"/>
+  <text x="1275" y="425" font-family="Inter, sans-serif" font-size="13" font-weight="600" fill="white" text-anchor="middle">Borrow</text>
+
+  <!-- Second row cards (simplified) -->
+  <rect x="40" y="472" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="40" y="472" width="210" height="160" rx="10" fill="#2C3E50"/>
+  <rect x="40" y="572" width="210" height="60" fill="#2C3E50"/>
+  <text x="145" y="562" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📖</text>
+  <rect x="270" y="472" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="270" y="472" width="210" height="160" rx="10" fill="#C0392B"/>
+  <rect x="270" y="572" width="210" height="60" fill="#C0392B"/>
+  <text x="375" y="562" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📕</text>
+  <rect x="500" y="472" width="210" height="300" rx="10" fill="white" stroke="#E5E8E8" stroke-width="1"/>
+  <rect x="500" y="472" width="210" height="160" rx="10" fill="#16A085"/>
+  <rect x="500" y="572" width="210" height="60" fill="#16A085"/>
+  <text x="605" y="562" font-family="Inter, sans-serif" font-size="28" text-anchor="middle">📗</text>
+</svg>

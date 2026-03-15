@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Dashboard — LibraryApp</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+    <!-- TODO: Nav bar with links to Catalog, Dashboard, Logout -->
+
+    <!-- TODO: "Currently Borrowed" table -->
+    <!-- Columns: Book Title, Author, Borrowed On, Due Date, Status, Action -->
+    <!-- Status: Active (green) or Overdue (red) — compare due_date to today -->
+    <!-- Action: Return button → POST /api/books/:id/return -->
+
+    <!-- TODO: "Borrow History" table -->
+    <!-- Columns: Book Title, Author, Borrowed, Returned, Status, Fee Paid -->
+
+    <script src="js/api.js"></script>
+    <script>
+        // TODO: fetch loans from GET /api/users/me/loans
+        // TODO: split into active (returned_at is null) and history
+        // TODO: render both tables
+        // TODO: handle return button click
+    </script>
+</body>
+</html>

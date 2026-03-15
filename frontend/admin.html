@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Panel — LibraryApp</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+    <!-- TODO: Nav bar (show ADMIN badge, link to View Site + Logout) -->
+
+    <!-- TODO: Sidebar with sections: Manage Books | Manage Users | Overdue Loans -->
+
+    <!-- TODO: Manage Books section -->
+    <!-- Table: Title, Author, Genre, Total Copies, Available, Actions (Edit / Delete) -->
+    <!-- Add Book button → modal form → POST /api/books -->
+    <!-- Edit book → PUT /api/books/:id -->
+    <!-- Delete book → DELETE /api/books/:id -->
+
+    <!-- TODO: Manage Users section -->
+    <!-- Table: Name, Email, Role, Joined, Actions (change role / delete) -->
+    <!-- GET /api/users, PUT /api/users/:id, DELETE /api/users/:id -->
+
+    <!-- TODO: Overdue Loans section -->
+    <!-- Table: User, Book, Due Date, Days Overdue, Fee -->
+    <!-- GET /api/loans or filter from /api/users -->
+
+    <script src="js/api.js"></script>
+    <script>
+        // TODO: load and render books (GET /api/books)
+        // TODO: load and render users (GET /api/users)
+        // TODO: handle add/edit book form
+        // TODO: handle delete book
+        // TODO: handle user role change / delete
+    </script>
+</body>
+</html>

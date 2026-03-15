@@ -1,0 +1,55 @@
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1440" height="900" fill="#ECF0F1"/>
+
+  <!-- Left Panel -->
+  <rect width="600" height="900" fill="#2C3E50"/>
+  <text x="300" y="380" font-family="Inter, sans-serif" font-size="36" font-weight="700" fill="white" text-anchor="middle">📚 LibraryApp</text>
+  <text x="300" y="430" font-family="Inter, sans-serif" font-size="16" fill="#BDC3C7" text-anchor="middle">Your community library, online.</text>
+  <text x="300" y="480" font-family="Inter, sans-serif" font-size="14" fill="#95A5A6" text-anchor="middle">Borrow. Read. Return. Repeat.</text>
+
+  <!-- Right Panel Card -->
+  <rect x="680" y="150" width="600" height="600" rx="12" fill="white" filter="url(#shadow)"/>
+
+  <!-- Tab Bar -->
+  <rect x="680" y="150" width="300" height="52" rx="0" fill="#F4F6F7"/>
+  <rect x="980" y="150" width="300" height="52" rx="0" fill="#F4F6F7"/>
+  <rect x="680" y="150" width="300" height="52" rx="0" fill="#2C3E50"/>
+  <text x="830" y="183" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="white" text-anchor="middle">Login</text>
+  <text x="1130" y="183" font-family="Inter, sans-serif" font-size="15" fill="#7F8C8D" text-anchor="middle">Register</text>
+
+  <!-- Login Form -->
+  <text x="980" y="260" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#2C3E50" text-anchor="middle">Welcome back</text>
+
+  <!-- Email Field -->
+  <text x="720" y="310" font-family="Inter, sans-serif" font-size="12" fill="#7F8C8D">Email address</text>
+  <rect x="720" y="320" width="520" height="48" rx="8" fill="#F8F9FA" stroke="#D5D8DC" stroke-width="1.5"/>
+  <text x="744" y="350" font-family="Inter, sans-serif" font-size="14" fill="#BDC3C7">you@email.com</text>
+
+  <!-- Password Field -->
+  <text x="720" y="396" font-family="Inter, sans-serif" font-size="12" fill="#7F8C8D">Password</text>
+  <rect x="720" y="406" width="520" height="48" rx="8" fill="#F8F9FA" stroke="#D5D8DC" stroke-width="1.5"/>
+  <text x="744" y="436" font-family="Inter, sans-serif" font-size="14" fill="#BDC3C7">••••••••</text>
+
+  <!-- Forgot Password -->
+  <text x="1240" y="476" font-family="Inter, sans-serif" font-size="12" fill="#3498DB" text-anchor="end">Forgot password?</text>
+
+  <!-- Login Button -->
+  <rect x="720" y="490" width="520" height="52" rx="8" fill="#F5A623"/>
+  <text x="980" y="522" font-family="Inter, sans-serif" font-size="15" font-weight="600" fill="white" text-anchor="middle">Login</text>
+
+  <!-- Divider -->
+  <line x1="720" y1="570" x2="950" y2="570" stroke="#D5D8DC" stroke-width="1"/>
+  <text x="980" y="575" font-family="Inter, sans-serif" font-size="12" fill="#95A5A6" text-anchor="middle">or</text>
+  <line x1="1010" y1="570" x2="1240" y2="570" stroke="#D5D8DC" stroke-width="1"/>
+
+  <!-- Switch to Register -->
+  <text x="980" y="618" font-family="Inter, sans-serif" font-size="13" fill="#7F8C8D" text-anchor="middle">Don't have an account?</text>
+  <text x="980" y="646" font-family="Inter, sans-serif" font-size="13" fill="#3498DB" text-anchor="middle" font-weight="600">Create one for free →</text>
+
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#00000018"/>
+    </filter>
+  </defs>
+</svg>

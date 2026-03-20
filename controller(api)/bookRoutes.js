@@ -4,64 +4,131 @@ const authMiddleware = require('../backend/middleware/auth');
 const adminOnly = require('../backend/middleware/adminOnly');
 
 // TODO: import book model functions
-// const { getAllBooks, getBookById, createBook, updateBook, updateAvailableCopies, deleteBook } = require('../backend/model/book');
+const { getAllBooks, getBookById, createBook, updateBook, updateAvailableCopies, deleteBook } = require('../backend/model/book');
 
 // ─── Public Routes ────────────────────────────────────────────────────────────
 
 // GET /api/books
 router.get('/', async (req, res) => {
-    // TODO: getAllBooks() and return list
-    res.status(501).json({ message: 'Not implemented yet' });
+    
+    const books = await getAllBooks();
+    if (!books){
+        return res.status(400).json({message:'books not  found'});
+    }
+    res.status(200).json(books);
 });
 
 // GET /api/books/:id
 router.get('/:id', async (req, res) => {
-    // TODO: getBookById(req.params.id) and return book with author details
-    res.status(501).json({ message: 'Not implemented yet' });
+   const book = await getBookById(req.params.id);
+   if (!book){
+    return res.status(400).json({message:'The book you are searching for isnt available '});
+   }
+   res.status(200).json(book)
+
+
 });
 
 // ─── Protected Routes (auth required) ────────────────────────────────────────
 
 // POST /api/books/:id/borrow
 router.post('/:id/borrow', authMiddleware, async (req, res) => {
-    // TODO:
-    // 1. getBookById(req.params.id) — check available_copies > 0
-    // 2. Create a loan row: user_id = req.user.id, book_id, due_date = NOW + 14 days
-    // 3. updateAvailableCopies(bookId, -1)
-    // 4. Return the created loan
-    res.status(501).json({ message: 'Not implemented yet' });
+    
+    
+    const book = await getBookById(req.params.id);
+    if(!book){
+       return res.status(400).json({message : 'Book not found'});
+    }
+    if (book.available_copies < 1){
+       return res.status(400).json({message :'No Available copies '});
+    }
+    const pool = require ('../backend/database');
+     const loanResult = await pool.query(
+        'INSERT INTO loans (user_id , book_id,due_date) VALUES ($1,$2,NOW ()+ INTERVAL \'14 days \') RETURNING *',
+        [req.user.id, book.id]
+     );
+     const loan =loanResult.rows[0];
+     await updateAvailableCopies(book.id,-1);
+
+     res.status(201).json(loan);
+    
+
 });
 
 // POST /api/books/:id/return
 router.post('/:id/return', authMiddleware, async (req, res) => {
-    // TODO:
-    // 1. Find the active loan (returned_at IS NULL) for this user + book
-    // 2. Set returned_at = NOW()
-    // 3. Calculate late fee: if returned_at > due_date, fee = days_overdue * 0.25
-    // 4. Update the loan row with returned_at and late_fee
-    // 5. updateAvailableCopies(bookId, +1)
-    // 6. Return updated loan
-    res.status(501).json({ message: 'Not implemented yet' });
+    
+    const bookId = req.params.id
+    
+     const pool = require ('../backend/database');
+     const loanResult = await pool.query(
+        'SELECT * FROM loans WHERE user_id =$1 AND book_id = $2 AND returned_at IS NULL ',
+        [req.user.id, bookId]
+     );
+     const loan = loanResult.rows[0];
+     if (!loan){
+       return res.status(400).json({message :'No loan found '});
+     };
+     const now  = new Date();
+     const dueDate = new Date(loan.due_date);
+     const daysOverDue= Math.floor((now-dueDate)/1000*60*60*24);
+     const lateFee = daysOverDue >0 ? daysOverDue *0.25 :0;
+
+      const updated = await pool.query(
+        'UPDATE loans SET returned_at = NOW(), late_fee =$1 WHERE id = $2 RETURNING *',
+        [lateFee, loan.id]
+     );
+
+
+
+      await updateAvailableCopies(bookId, +1);
+     res.status(200).json(updated.rows[0]);
+
 });
 
 // ─── Admin Routes ─────────────────────────────────────────────────────────────
 
 // POST /api/books
 router.post('/', authMiddleware, adminOnly, async (req, res) => {
-    // TODO: createBook(req.body) — expects { title, author_id, genre, total_copies }
-    res.status(501).json({ message: 'Not implemented yet' });
+    //  createBook(req.body) — expects { title, author_id, genre, total_copies }
+    const {title, author_id, genre ,total_copies} = req.body;
+
+  
+    const newBook = await createBook ({title, author_id, genre ,total_copies});
+    res.status(201).json(newBook);
+    
+    
 });
 
 // PUT /api/books/:id
 router.put('/:id', authMiddleware, adminOnly, async (req, res) => {
-    // TODO: updateBook(req.params.id, req.body)
-    res.status(501).json({ message: 'Not implemented yet' });
+    //  updateBook(req.params.id, req.body)
+   
+    const book = await getBookById (req.params.id)
+    
+        if(!book)
+        {
+          return  res.status(400).json({message: 'book not found !'});
+        }
+
+        const updatedBook = await updateBook(req.params.id, req.body);
+        res.status(200).json(updatedBook);
+
+    
 });
 
 // DELETE /api/books/:id
 router.delete('/:id', authMiddleware, adminOnly, async (req, res) => {
-    // TODO: deleteBook(req.params.id)
-    res.status(501).json({ message: 'Not implemented yet' });
+    //  deleteBook(req.params.id)
+    
+    const book = await getBookById(req.params.id);
+    if(!book)
+    {
+      return   res.status(400).json({message : 'Books does not exist !'});
+    }
+    await deleteBook(req.params.id);
+
+    res.status(200).json({message :'Book successfully deleted !'});
 });
 
 module.exports = router;

@@ -4,71 +4,106 @@ const authMiddleware = require('../backend/middleware/auth');
 const adminOnly = require('../backend/middleware/adminOnly');
 
 // TODO: import user model functions
-// const { getAllUsers, getUserById, getUserByEmail, createUser, updateUser, deleteUser } = require('../backend/model/user');
+const { getAllUsers, getUserById, getUserByEmail, createUser, updateUser, deleteUser } = require('../backend/model/user');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 // ─── Public Routes ────────────────────────────────────────────────────────────
 
 // POST /api/users/register
 router.post('/register', async (req, res) => {
-    // TODO:
-    // 1. Extract name, email, password from req.body
-    // 2. Check if email already exists (getUserByEmail)
-    // 3. Hash password with bcrypt
-    // 4. createUser({ name, email, hashedPassword })
-    // 5. Sign a JWT with { id, email, role }
-    // 6. Return token
-    res.status(501).json({ message: 'Not implemented yet' });
-});
+    const { name, email, password } = req.body;
+    
+    const existingUser = await getUserByEmail(email);
+    if (existingUser){
+        return res.status(400).json({ message: 'Email already exists'});
+
+    }
+    const hashedPassword =await bcrypt.hash(password ,10);
+    const user =await createUser({name,email,hashedPassword});
+    const token =jwt.sign({id:user.id,email:user.email,role:user.role},
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRES_IN }
+        );
+        res.status(201).json({token});
+    });
 
 // POST /api/users/login
 router.post('/login', async (req, res) => {
-    // TODO:
-    // 1. Extract email, password from req.body
-    // 2. getUserByEmail(email)
-    // 3. bcrypt.compare(password, user.password)
-    // 4. Sign a JWT with { id, email, role }
-    // 5. Return token
-    res.status(501).json({ message: 'Not implemented yet' });
+   const{email,password}=req.body;
+    const user =await getUserByEmail(email);
+    if (!user){
+        return res.status(400).json({message: 'invalid email or password '})
+    }
+    const passwordMatch = await bcrypt.compare(password,user.password);
+    if (!passwordMatch){
+        return res.status(400).json({message:'invalid email or password'})
+    }
+    const token =jwt.sign({id:user.id,email:user.email,role:user.role},
+        process.env.JWT_SECRET,
+        { expiresIn: process.env.JWT_EXPIRES_IN }
+    )
+    res.status(200).json({token});
 });
 
 // ─── Protected Routes (auth required) ────────────────────────────────────────
 
 // GET /api/users/me
 router.get('/me', authMiddleware, async (req, res) => {
-    // TODO: getUserById(req.user.id) and return user
-    res.status(501).json({ message: 'Not implemented yet' });
+    const user = await getUserById(req.user.id);
+    if (!user )
+    {return res.status(400).json({message:'User not found '})}
+    res.status(200).json(user);
 });
 
 // GET /api/users/me/loans
 router.get('/me/loans', authMiddleware, async (req, res) => {
-    // TODO: query loans WHERE user_id = req.user.id, JOIN books and authors
-    res.status(501).json({ message: 'Not implemented yet' });
+    const pool = require ('../backend/database');
+    const result = await pool.query(
+        'SELECT l.id AS loan_id, l.book.id AS book_id,b.title AS book_title,l.loan_date AS loan_date,l.return_date AS return_date FROM loans l JOIN books b ON l.book_id =b.id WHERE l.user_id =$1 ORDER BY l.loan_date DESC ',
+        [req.user.id]
+    );
+    res.status(200).json(result.rows);
+    
 });
 
 // ─── Admin Routes ─────────────────────────────────────────────────────────────
 
-// GET /api/users
+// GET /api/users (for only admin )
 router.get('/', authMiddleware, adminOnly, async (req, res) => {
-    // TODO: getAllUsers()
-    res.status(501).json({ message: 'Not implemented yet' });
+  const users= await getAllUsers();
+  res.status(200).json(users);
 });
 
-// GET /api/users/:id
+// GET (fetch) /api/users/:id
 router.get('/:id', authMiddleware, adminOnly, async (req, res) => {
-    // TODO: getUserById(req.params.id) + their loans
-    res.status(501).json({ message: 'Not implemented yet' });
+    const users = await getUserById(req.params.id);
+    if (!users){
+        return res.status(404).json({message:'user not found'})
+    }
+    res.status(200).json(users);
 });
 
-// PUT /api/users/:id
+// PUT (update ) /api/users/:id
 router.put('/:id', authMiddleware, adminOnly, async (req, res) => {
-    // TODO: updateUser(req.params.id, req.body)
-    res.status(501).json({ message: 'Not implemented yet' });
+  const users = await getUserById(req.params.id);
+    if (!users){
+        return res.status(404).json({message:'user not found'})
+    }
+    const updatedUser =await updateUser(req.params.id, req.body);
+    res.status(200).json(updatedUser);
 });
 
 // DELETE /api/users/:id
 router.delete('/:id', authMiddleware, adminOnly, async (req, res) => {
-    // TODO: deleteUser(req.params.id)
-    res.status(501).json({ message: 'Not implemented yet' });
+    
+    const users = await getUserById(req.params.id);
+    if (!users){
+        return res.status(404).json({message:'user not found'})
+    }
+    const deletedUser = await deleteUser(req.params.id);
+    res.status(200).json({message:'user deleted successfully'})
 });
 
 module.exports = router;

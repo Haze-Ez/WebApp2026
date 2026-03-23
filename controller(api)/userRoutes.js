@@ -3,7 +3,6 @@ const router = express.Router();
 const authMiddleware = require('../backend/middleware/auth');
 const adminOnly = require('../backend/middleware/adminOnly');
 
-// TODO: import user model functions
 const { getAllUsers, getUserById, getUserByEmail, createUser, updateUser, deleteUser } = require('../backend/model/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');

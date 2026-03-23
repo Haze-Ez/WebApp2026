@@ -3,7 +3,6 @@ const router = express.Router();
 const authMiddleware = require('../backend/middleware/auth');
 const adminOnly = require('../backend/middleware/adminOnly');
 
-// TODO: import book model functions
 const { getAllBooks, getBookById, createBook, updateBook, updateAvailableCopies, deleteBook } = require('../backend/model/book');
 
 // ─── Public Routes ────────────────────────────────────────────────────────────
@@ -22,7 +21,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
    const book = await getBookById(req.params.id);
    if (!book){
-    return res.status(400).json({message:'The book you are searching for isnt available '});
+    return res.status(400).json({message:'The book you are searching for isn\'t available '});
    }
    res.status(200).json(book)
 

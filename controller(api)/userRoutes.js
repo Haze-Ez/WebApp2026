@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
     
     const existingUser = await getUserByEmail(email);
     if (existingUser){
-        return res.status(400).json({ message: 'Email already exists'});
+        return res.status(404).json({ message: 'Email already exists'});
 
     }
     const hashedPassword =await bcrypt.hash(password ,10);
@@ -33,11 +33,11 @@ router.post('/login', async (req, res) => {
    const{email,password}=req.body;
     const user =await getUserByEmail(email);
     if (!user){
-        return res.status(400).json({message: 'invalid email or password '})
+        return res.status(404).json({message: 'invalid email or password '})
     }
     const passwordMatch = await bcrypt.compare(password,user.password);
     if (!passwordMatch){
-        return res.status(400).json({message:'invalid email or password'})
+        return res.status(404).json({message:'invalid email or password'})
     }
     const token =jwt.sign({id:user.id,email:user.email,role:user.role},
         process.env.JWT_SECRET,

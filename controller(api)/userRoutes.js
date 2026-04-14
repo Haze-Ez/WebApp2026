@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
 router.get('/me', authMiddleware, async (req, res) => {
     const user = await getUserById(req.user.id);
     if (!user )
-    {return res.status(400).json({message:'User not found '})}
+    {return res.status(404).json({message:'User not found '})}
     res.status(200).json(user);
 });
 
@@ -60,7 +60,11 @@ router.get('/me', authMiddleware, async (req, res) => {
 router.get('/me/loans', authMiddleware, async (req, res) => {
     const pool = require ('../backend/database');
     const result = await pool.query(
+<<<<<<< HEAD
         'SELECT l.id AS loan_id, l.book_id AS book_id, b.title AS book_title, l.borrowed_at AS loan_date, l.due_date AS due_date, l.returned_at AS return_date FROM loans l JOIN books b ON l.book_id = b.id WHERE l.user_id = $1 ORDER BY l.borrowed_at DESC ',
+=======
+        'SELECT l.id AS loan_id, l.book_id, b.title AS book_title, l.borrowed_at, l.due_date, l.returned_at, l.late_fee FROM loans l JOIN books b ON l.book_id = b.id WHERE l.user_id = $1 ORDER BY l.borrowed_at DESC',
+>>>>>>> 3c5dab6f096799e0461d596c998ccbbb4b24ca2b
         [req.user.id]
     );
     res.status(200).json(result.rows);
@@ -101,7 +105,7 @@ router.delete('/:id', authMiddleware, adminOnly, async (req, res) => {
     if (!users){
         return res.status(404).json({message:'user not found'})
     }
-    const deletedUser = await deleteUser(req.params.id);
+    await deleteUser(req.params.id);
     res.status(200).json({message:'user deleted successfully'})
 });
 

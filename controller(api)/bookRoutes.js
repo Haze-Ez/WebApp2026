@@ -41,7 +41,11 @@ router.post('/:id/borrow', authMiddleware, async (req, res) => {
     }
     const pool = require ('../backend/database');
      const loanResult = await pool.query(
+<<<<<<< HEAD
         'INSERT INTO loans (user_id, book_id, due_date) VALUES ($1, $2, NOW() + INTERVAL \'14 days\') RETURNING *',
+=======
+        'INSERT INTO loans (user_id , book_id,due_date) VALUES ($1,$2,NOW()+ INTERVAL \'14 days \') RETURNING *',
+>>>>>>> 3c5dab6f096799e0461d596c998ccbbb4b24ca2b
         [req.user.id, book.id]
      );
      const loan =loanResult.rows[0];
@@ -68,8 +72,13 @@ router.post('/:id/return', authMiddleware, async (req, res) => {
      };
      const now  = new Date();
      const dueDate = new Date(loan.due_date);
+<<<<<<< HEAD
      const daysOverDue = Math.floor((now - dueDate) / (1000 * 60 * 60 * 24));
      const lateFee = daysOverDue > 0 ? daysOverDue * 0.25 : 0;
+=======
+     const daysOverDue= Math.floor((now-dueDate)/(1000*60*60*24));
+     const lateFee = daysOverDue >0 ? daysOverDue *0.25 :0;
+>>>>>>> 3c5dab6f096799e0461d596c998ccbbb4b24ca2b
 
       const updated = await pool.query(
         'UPDATE loans SET returned_at = NOW(), late_fee =$1 WHERE id = $2 RETURNING *',

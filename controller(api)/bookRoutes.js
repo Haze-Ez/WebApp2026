@@ -23,9 +23,7 @@ router.get('/:id', async (req, res) => {
    if (!book){
     return res.status(400).json({message:'The book you are searching for isn\'t available '});
    }
-   res.status(200).json(book)
-
-
+   res.status(200).json(book);
 });
 
 // ─── Protected Routes (auth required) ────────────────────────────────────────
@@ -43,7 +41,7 @@ router.post('/:id/borrow', authMiddleware, async (req, res) => {
     }
     const pool = require ('../backend/database');
      const loanResult = await pool.query(
-        'INSERT INTO loans (user_id , book_id,due_date) VALUES ($1,$2,NOW ()+ INTERVAL \'14 days \') RETURNING *',
+        'INSERT INTO loans (user_id, book_id, due_date) VALUES ($1, $2, NOW() + INTERVAL \'14 days\') RETURNING *',
         [req.user.id, book.id]
      );
      const loan =loanResult.rows[0];
@@ -70,8 +68,8 @@ router.post('/:id/return', authMiddleware, async (req, res) => {
      };
      const now  = new Date();
      const dueDate = new Date(loan.due_date);
-     const daysOverDue= Math.floor((now-dueDate)/1000*60*60*24);
-     const lateFee = daysOverDue >0 ? daysOverDue *0.25 :0;
+     const daysOverDue = Math.floor((now - dueDate) / (1000 * 60 * 60 * 24));
+     const lateFee = daysOverDue > 0 ? daysOverDue * 0.25 : 0;
 
       const updated = await pool.query(
         'UPDATE loans SET returned_at = NOW(), late_fee =$1 WHERE id = $2 RETURNING *',
